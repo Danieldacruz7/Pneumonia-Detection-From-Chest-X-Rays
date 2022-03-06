@@ -31,9 +31,9 @@ Checks image type to verify that the image is an X-ray. According to the explora
 Each image will be rescaled by dividing 0.255. Each image will be normalized using the mean and standard deviation of the image. Each image will then be resized to fit the network at (1, 224, 224, 3). 
 
 **CNN Architecture:**
-![Output layers](./Output layers.png)
+![Output layers](/Output layers.png)
 
-![layered image](./layered image.png)
+![layered image](/layered image.png)
 
 ### 3. Algorithm Training
 

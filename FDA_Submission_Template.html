@@ -1,0 +1,55 @@
+<h1 id="fda-submission">FDA Submission</h1>
+<p><strong>Daniel da Cruz</strong></p>
+<p><strong>Pneumonia Detection Algorithm</strong></p>
+<h2 id="algorithm-description">Algorithm Description</h2>
+<h3 id="general-information">1. General Information</h3>
+<p><strong>Intended Use Statement:</strong> The Pneumonia Detection Algorithm is designed to detect the presence of pneumonia in X-ray radiographic imaging and assist clincians in diagnosing the aformentioned condition. The medical device falls under the Class II, and is considered a medium risk. The algorithm provides Computer-Assisted Diagnosis for clincians. An application for 510k is necessary for FDA regulatory approval.</p>
+<p><strong>Indications for Use:</strong> The algorithm is to aid clinician’s in making informed decisions on patient diagnosis. The algorithm can be used in in-patient settings where a difficulty in breathing is a symptom. The algorithm is to be used in males and females between the ages of 20 and 70 years of age.</p>
+<p><strong>Device Limitations:</strong> The algorithm was trained on a relatively small sample size of 1430 postive Pneumonia cases. The race of individuals within the dataset is unknown. Any bias against racial groups cannot be estimated as a result. The majority of individuals fall within the age range of 20 - 70 years of age. There is not enough data for individuals outside of this age range to understand the algorithm’s impact. The device may also require high compute power as compared to the average computer that a radiologist may use.</p>
+<p><strong>Clinical Impact of Performance:</strong> After training, the device is returns an F1 score of 0.52. The algorithm outperforms the average radiologist. The average radiologist scores 0.387. Not only will the model return a more accurate result, it will also reduce the amount of time needed to process an X-ray.</p>
+<h3 id="algorithm-design-and-function">2. Algorithm Design and Function</h3>
+<p><img src=\"Flowchart.png\" width=400 height=400 /></p>
+<p><strong>DICOM Checking Steps:</strong> Checks image type to verify that the image is an X-ray. According to the exploratory data analysis, all images were in the correct radiological view, and there were no missing/unknown views. This will not be checked.</p>
+<p><strong>Preprocessing Steps:</strong> Each image will be rescaled by dividing 0.255. Each image will be normalized using the mean and standard deviation of the image. Each image will then be resized to fit the network at (1, 224, 224, 3).</p>
+<p><strong>CNN Architecture:</strong> &lt;img src="Output layers.png" width=400 height=400 /&gt;</p>
+<p>&lt;img src="layered image.png" width=400 height=400 /&gt;</p>
+<h3 id="algorithm-training">3. Algorithm Training</h3>
+<p><strong>Parameters:</strong> * Types of augmentation used during training: - rescale=1./ 255.0 - horizontal_flip = True - vertical_flip = False - height_shift_range= 0.1 - width_shift_range=0.1 - rotation_range=15 - shear_range = 0.1 - zoom_range=0.1</p>
+<ul>
+<li>Batch size: 100</li>
+<li>Optimizer learning rate = 0.0001</li>
+<li>Layers of pre-existing architecture that were frozen: First 17 Layers of VGG model</li>
+<li>Layers of pre-existing architecture that were fine-tuned: The last 3 layers of the VGG model</li>
+<li>Layers added to pre-existing architecture: 11 Layers were added. These include -
+<ul>
+<li>Flatten()</li>
+<li>Dense(512, activation=‘relu’)</li>
+<li>Dropout(0.2)</li>
+<li>Dense(256, activation=‘relu’)</li>
+<li>Dropout(0.2)</li>
+<li>Dense(256, activation=‘relu’)</li>
+<li>Dropout(0.2)</li>
+<li>Dense(128, activation=‘relu’)</li>
+<li>Dropout(0.2)</li>
+<li>Dense(64, activation=‘relu’)</li>
+<li>Dense(1, activation=‘sigmoid’)</li>
+</ul></li>
+</ul>
+<p>&lt;img src="ROC Curve.png" width=400 height=400 /&gt;</p>
+<p><img src=\"history.png\" width=400 height=400 /></p>
+<p><strong>Final Threshold and Explanation:</strong> The final threshold will be set at 0.7 this is done to ensure a strict measure on the F1 score, and improve results.</p>
+<h3 id="databases">4. Databases</h3>
+<p>The database that was used contained 112 120 X-ray images from the NIH Chest X-ray Dataset. This dataset can be found at https://www.kaggle.com/nih-chest-xrays/data. The dataset is 45GB, and is considerably large. Among the X-ray images, only 1431 positive cases of Pneumonia.</p>
+<p><strong>Description of Training Dataset:</strong> The training dataset is the first batch of dataset that the algorithm was trained on.</p>
+<p><strong>Description of Validation Dataset:</strong> This is the second batch of data from the main dataset. This batch of data was used to assess the performance of the algorithm.</p>
+<h3 id="ground-truth">5. Ground Truth</h3>
+<p>The ground truth was created using a natural language processing model to classify images. Medical reports were scanned and the accompanying diagnoses were used to label the images.</p>
+<h3 id="fda-validation-plan">6. FDA Validation Plan</h3>
+<p><strong>Patient Population Description for FDA Validation Dataset:</strong> - The population is made up of male and females between the ages of 1 - 95 years old. The race of individuals is unknown. The diagnoses across the patient population included - Atelectasis, Cardiomegaly, Consolidation, Edema, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural thickening, Pneumonia, Pneumothorax.</p>
+<p><strong>Ground Truth Acquisition Methodology:</strong> The ground truth can be acquired by assessing the performance of radiologists on X-ray images when identifying positive cases of Pneumonia. It is important to note that patient history and clinical presentation cannot reported to the assessing radiologists. The assessment must be made on X-ray images alone as the algorithm ws presented with the same information and nothing more.</p>
+<p><strong>Algorithm Performance Standard:</strong> According to Rajpurkar, et al. (2017), the average performance of a radiologist is 0.387 on F1 scoring. The CheXnet model was able to outperform the average radiologist with a score of 0.435. The model created here scored 0.52, which is higher than the standard performance.</p>
+<h3 id="references">References:</h3>
+<ul>
+<li>NIH. (December 2017). NIH Chest X-rays. Retrieved 06 March 2022 from https://www.kaggle.com/nih-chest-xrays/data</li>
+<li>Rajpurkar, P., Irvin, J., Zhu, K. and Yang, B., 2017. CheXNet: Radiologist-Level Pneumonia Detection on Chest X-Rays with Deep Learning. 3rd ed. Cornell University: arXiv.</li>
+</ul>

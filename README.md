@@ -28,7 +28,7 @@ The following libraries will be required for the project.
 ### File Descriptions:
 There are three main files - Build and train model.ipynb, EDA.ipynb, Inference.ipynb. These notebooks contain the majority of the code necessary for the project. The first notebook is used to create and save the model. The second file is used for exploratory data analysis on the metadata of the dataset. The third notebook contains the code for model inference on a new image.
 
-The model can be found in the final_model.json file. The weights could not be loaded onto Github due to the size of the file.
+The model can be found in the final_model.json file. The weights can be found in a zip file as xray_class_model.best.zip.
 
 Finally, the submission template for the Food and Drug Administration can be found at FDA_Submission_Template.md file. Here, a summary of the algorithm can be found.
 

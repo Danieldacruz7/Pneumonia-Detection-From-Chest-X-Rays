@@ -40,14 +40,14 @@ Each image will be rescaled by dividing 255. Each image will be normalized using
 **Parameters:**
 
 * Types of augmentation used during training:
- - rescale=1./ 255.0
- - horizontal_flip = True
- - vertical_flip = False
- - height_shift_range= 0.1
- - width_shift_range=0.1
- - rotation_range=15
- - shear_range = 0.1
- - zoom_range=0.1
+     - rescale=1./ 255.0
+     - horizontal_flip = True
+     - vertical_flip = False
+     - height_shift_range= 0.1
+     - width_shift_range=0.1
+     - rotation_range=15
+     - shear_range = 0.1
+     - zoom_range=0.1
  
 * Batch size: 100
 * Optimizer learning rate = 0.0001
@@ -82,12 +82,11 @@ The database that was used contained 112 120 X-ray images from the NIH Chest X-r
 **Description of Training Dataset:** 
 The training dataset is the first batch of dataset that the algorithm was trained on. 
 
-
 **Description of Validation Dataset:** 
 This is the second batch of data from the main dataset. This batch of data was used to assess the performance of the algorithm. 
 
 ### 5. Ground Truth
-The ground truth was created using a natural language processing model to classify images. Medical reports were scanned and the accompanying diagnoses were used to label the images. 
+The ground truth was created using a natural language processing model to classify images. Medical reports were scanned and the accompanying diagnoses were used to label the images.
 
 
 ### 6. FDA Validation Plan

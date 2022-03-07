@@ -32,9 +32,9 @@ Each image will be rescaled by dividing 0.255. Each image will be normalized usi
 
 **CNN Architecture:**
 
-![Output layers](./Output layers.png)
+![Output](./Output.png)
 
-![layered image](./layered image.png)
+![layers](./layers.png)
 
 ### 3. Algorithm Training
 
@@ -66,9 +66,9 @@ Each image will be rescaled by dividing 0.255. Each image will be normalized usi
   - Dense(64, activation='relu')
   - Dense(1, activation='sigmoid')
 
-<img src=\"ROC Curve.png\" width=400 height=400 />
+![ROC](./ROC.png)
 
-<img src=\"history.png\" width=400 height=400 />
+![history](./history.png)
 
 **Final Threshold and Explanation:**
 The final threshold will be set at 0.7 this is done to ensure a strict measure on the F1 score, and improve results. 

@@ -32,7 +32,7 @@ There are three main files - Build and train model.ipynb, EDA.ipynb, Inference.i
 
 The model can be found in the final_model.json file. The weights could not be loaded onto Github due to the size of the file.
 
-Finally, the submission template for the Food and Drug Administration can be found at FDA_Submission_Template.md file. Here, a summary of the algorithm can be found. 
+Finally, the submission template for the Food and Drug Administration can be found at FDA_Submission_Template.md file. Here, a summary of the algorithm can be found.
 
 ### How To Interact With the Project:
 The notebooks can be viewed to assess the code and outputs for the project. The code can be converted into a python file for scripting and utilization in real-world scenarios.

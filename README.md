@@ -1,7 +1,5 @@
 # Pneumonia-Detection-From-Chest-X-Rays
-Repository for a CNN that will detect the presence of Pneumonia on a Chest X-ray
-
---In Progress--
+A Convolutional Neural Network that will detect the presence of Pneumonia on a Chest X-ray.
 
 ### Table of Contents
 1. Project Motivation

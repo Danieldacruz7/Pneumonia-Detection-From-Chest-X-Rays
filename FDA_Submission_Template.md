@@ -22,7 +22,7 @@ After training, the device is returns an F1 score of 0.53. The algorithm outperf
 
 ### 2. Algorithm Design and Function
 
-![Flowchart](./Flowchart.png)
+![Flowchart](./Images/Flowchart.png)
 
 **DICOM Checking Steps:**
 Checks image type to verify that the image is an X-ray. According to the exploratory data analysis, all images were in the correct radiological view, and there were no missing/unknown views. This will not be checked. 
@@ -32,7 +32,7 @@ Each image will be rescaled by dividing 255. Each image will be normalized using
 
 **CNN Architecture:**
 
-![Output](./Output.png)
+![Output](./Images/Output.png)
 
 
 ### 3. Algorithm Training
@@ -66,15 +66,15 @@ Each image will be rescaled by dividing 255. Each image will be normalized using
   10 Dense(64, activation='relu')
   11. Dense(1, activation='sigmoid')
   
-![layers](./layers.png)
+![layers](./Images/layers.png)
 
 
 **Final Threshold and Explanation:**
 The final threshold will be set at 0.62. This threshold corresponds to the highest F1 score. At this threshold, the F1 score is 0.53. This is relatively high as compared to CheXnet - a model created by Rajpurkar, et al. (2017). The model needs to be assessed on a larger dataset to verify the results. 
 
-![ROC](./ROC.png)
+![ROC](./Images/ROC.png)
 
-![history](./history.png)
+![history](./Images/history.png)
 
 ### 4. Databases
 The database that was used contained 112 120 X-ray images from the NIH Chest X-ray Dataset. This dataset can be found at https://www.kaggle.com/nih-chest-xrays/data. The dataset is 45GB, and is considerably large. Among the X-ray images, only 1431 positive cases of Pneumonia. 

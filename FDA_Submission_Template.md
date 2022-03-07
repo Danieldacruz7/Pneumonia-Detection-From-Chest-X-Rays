@@ -12,13 +12,13 @@
 The Pneumonia Detection Algorithm is designed to detect the presence of pneumonia in X-ray radiographic imaging and assist clincians in diagnosing the aformentioned condition. The medical device falls under the Class II, and is considered a medium risk. The algorithm provides Computer-Assisted Diagnosis for clincians. An application for 510k is necessary for FDA regulatory approval. 
 
 **Indications for Use:**
-The algorithm is to aid clinician's in making informed decisions on patient diagnosis. The algorithm can be used in in-patient settings where a difficulty in breathing is a symptom. The algorithm is to be used in males and females between the ages of 20 and 70 years of age. 
+The algorithm is to aid clinician's in making informed decisions on patient diagnosis. The algorithm can be used in in-patient settings where a chest X-ray is requested. The algorithm is to be used in males and females between the ages of 20 and 70 years of age. 
 
 **Device Limitations:**
-The algorithm was trained on a relatively small sample size of 1430 postive Pneumonia cases. The race of individuals within the dataset is unknown. Any bias against racial groups cannot be estimated as a result. The majority of individuals fall within the age range of 20 - 70 years of age. There is not enough data for individuals outside of this age range to understand the algorithm's impact. The device may also require high compute power as compared to the average computer that a radiologist may use. 
+The algorithm was trained on a relatively small sample size of 1431 postive Pneumonia cases. The race of individuals within the dataset is unknown. Any bias against racial groups cannot be estimated as a result. The majority of individuals fall within the age range of 20 - 70 years of age. There is not enough data for individuals outside of this age range to understand the algorithm's impact. The device may also require high compute power as compared to the average computer that a radiologist may use. 
 
 **Clinical Impact of Performance:**
-After training, the device is returns an F1 score of 0.52. The algorithm outperforms the average radiologist. The average radiologist scores 0.387. Not only will the model return a more accurate result, it will also reduce the amount of time needed to process an X-ray. 
+After training, the device is returns an F1 score of 0.53. The algorithm outperforms the average radiologist. The average radiologist scores 0.387. Not only will the model return a more accurate result, it will also reduce the amount of time needed to process an X-ray. 
 
 ### 2. Algorithm Design and Function
 
@@ -28,17 +28,17 @@ After training, the device is returns an F1 score of 0.52. The algorithm outperf
 Checks image type to verify that the image is an X-ray. According to the exploratory data analysis, all images were in the correct radiological view, and there were no missing/unknown views. This will not be checked. 
 
 **Preprocessing Steps:**
-Each image will be rescaled by dividing 0.255. Each image will be normalized using the mean and standard deviation of the image. Each image will then be resized to fit the network at (1, 224, 224, 3). 
+Each image will be rescaled by dividing 255. Each image will be normalized using the mean and standard deviation of the image. Each image will then be resized to fit the network at (1, 224, 224, 3). 
 
 **CNN Architecture:**
 
 ![Output](./Output.png)
 
-![layers](./layers.png)
 
 ### 3. Algorithm Training
 
 **Parameters:**
+
 * Types of augmentation used during training:
  - rescale=1./ 255.0
  - horizontal_flip = True
@@ -54,24 +54,27 @@ Each image will be rescaled by dividing 0.255. Each image will be normalized usi
 * Layers of pre-existing architecture that were frozen: First 17 Layers of VGG model
 * Layers of pre-existing architecture that were fine-tuned: The last 3 layers of the VGG model 
 * Layers added to pre-existing architecture: 11 Layers were added. These include - 
-  - Flatten()
-  - Dense(512, activation='relu')
-  - Dropout(0.2)
-  - Dense(256, activation='relu')
-  - Dropout(0.2)
-  - Dense(256, activation='relu')
-  - Dropout(0.2)
-  - Dense(128, activation='relu')
-  - Dropout(0.2)
-  - Dense(64, activation='relu')
-  - Dense(1, activation='sigmoid')
+  1. Flatten()
+  2. Dense(512, activation='relu')
+  3. Dropout(0.2)
+  4. Dense(256, activation='relu')
+  5. Dropout(0.2)
+  6. Dense(256, activation='relu')
+  7. Dropout(0.2)
+  8. Dense(128, activation='relu')
+  9. Dropout(0.2)
+  10 Dense(64, activation='relu')
+  11. Dense(1, activation='sigmoid')
+  
+![layers](./layers.png)
+
+
+**Final Threshold and Explanation:**
+The final threshold will be set at 0.62. This threshold corresponds to the highest F1 score. At this threshold, the F1 score is 0.53. This is relatively high as compared to CheXnet - a model created by Rajpurkar, et al. (2017). The model needs to be assessed on a larger dataset to verify the results. 
 
 ![ROC](./ROC.png)
 
 ![history](./history.png)
-
-**Final Threshold and Explanation:**
-The final threshold will be set at 0.7 this is done to ensure a strict measure on the F1 score, and improve results. 
 
 ### 4. Databases
 The database that was used contained 112 120 X-ray images from the NIH Chest X-ray Dataset. This dataset can be found at https://www.kaggle.com/nih-chest-xrays/data. The dataset is 45GB, and is considerably large. Among the X-ray images, only 1431 positive cases of Pneumonia. 
@@ -97,7 +100,7 @@ The ground truth can be acquired by assessing the performance of radiologists on
 
 
 **Algorithm Performance Standard:**
-According to Rajpurkar, et al. (2017), the average performance of a radiologist is 0.387 on F1 scoring. The CheXnet model was able to outperform the average radiologist with a score of 0.435. The model created here scored 0.52, which is higher than the standard performance. 
+According to Rajpurkar, et al. (2017), the average performance of a radiologist is 0.387 on F1 scoring of a Chest X-ray. The CheXnet model was able to outperform the average radiologist with a score of 0.435. The model created here scored 0.53, which is higher than the standard performance. 
 
 ### References:
 

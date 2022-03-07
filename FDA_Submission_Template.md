@@ -23,6 +23,7 @@ After training, the device is returns an F1 score of 0.52. The algorithm outperf
 ### 2. Algorithm Design and Function
 
 <img src=\"Flowchart.png\" width=400 height=400 />
+![Flowchart](./Pneumonia-Detection-From-Chest-X-Rays/Flowchart.png)
 
 **DICOM Checking Steps:**
 Checks image type to verify that the image is an X-ray. According to the exploratory data analysis, all images were in the correct radiological view, and there were no missing/unknown views. This will not be checked. 
@@ -31,9 +32,9 @@ Checks image type to verify that the image is an X-ray. According to the explora
 Each image will be rescaled by dividing 0.255. Each image will be normalized using the mean and standard deviation of the image. Each image will then be resized to fit the network at (1, 224, 224, 3). 
 
 **CNN Architecture:**
-![Output layers](./Output layers.png)
+![Output layers](Pneumonia-Detection-From-Chest-X-Rays/Output layers.png)
 
-![layered image](./layered image.png)
+![layered image](Pneumonia-Detection-From-Chest-X-Rays/layered image.png)
 
 ### 3. Algorithm Training
 

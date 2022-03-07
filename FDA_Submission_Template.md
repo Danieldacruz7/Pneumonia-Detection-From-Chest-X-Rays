@@ -22,7 +22,7 @@ After training, the device is returns an F1 score of 0.52. The algorithm outperf
 
 ### 2. Algorithm Design and Function
 
-<img src=\"Flowchart.png\" width=400 height=400 />
+
 ![Flowchart](./Pneumonia-Detection-From-Chest-X-Rays/Flowchart.png)
 
 **DICOM Checking Steps:**

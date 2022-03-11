@@ -25,7 +25,9 @@ After training, the device is returns an F1 score of 0.53. The algorithm outperf
 ![Flowchart](./Images/Flowchart.png)
 
 **DICOM Checking Steps:**
-Checks image type to verify that the image is an X-ray. According to the exploratory data analysis, all images were in the correct radiological view, and there were no missing/unknown views. This will not be checked. 
+ 1. Checks image type to verify that the image is an X-ray. 
+ 2. Checks patient position to verify that the view of the X-ray is either an antero-posterior view or postero-anterior view. 
+ 3. Checks the body part examined to verify that it is the chest being examined.  
 
 **Preprocessing Steps:**
 Each image will be rescaled by dividing 255. Each image will be normalized using the mean and standard deviation of the image. Each image will then be resized to fit the network at (1, 224, 224, 3). 
